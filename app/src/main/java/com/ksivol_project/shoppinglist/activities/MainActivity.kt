@@ -1,7 +1,8 @@
-package com.ksivol_project.shoppinglist
+package com.ksivol_project.shoppinglist.activities
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import com.ksivol_project.shoppinglist.R
 
 class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
