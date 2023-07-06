@@ -6,12 +6,12 @@ plugins {
 
 android {
     namespace 'com.ksivol_project.shoppinglist'
-    compileSdk 32
+    compileSdk 33
 
     defaultConfig {
         applicationId "com.ksivol_project.shoppinglist"
         minSdk 21
-        targetSdk 32
+        targetSdk 33
         versionCode 1
         versionName "1.0"
 
@@ -31,11 +31,15 @@ android {
     kotlinOptions {
         jvmTarget = '1.8'
     }
+
+    buildFeatures{
+        viewBinding true
+    }
 }
 
 dependencies {
 
-    implementation 'androidx.core:core-ktx:1.10.1'
+    implementation 'androidx.core:core-ktx:1.8.10'
     //start
     implementation 'androidx.room:room-ktx:2.5.2'
     kapt 'androidx.room:room-compiler:2.5.2'
