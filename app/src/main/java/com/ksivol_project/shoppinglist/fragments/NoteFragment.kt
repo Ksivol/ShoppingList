@@ -27,11 +27,12 @@ class NoteFragment : BaseFragment() {
     }
 
     override fun onClickNew() {
-        startActivity(Intent(activity, NewNoteActivity::class.java))
+        editLauncher.launch(Intent(activity, NewNoteActivity::class.java))
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        onEditResult()
     }
 
     override fun onCreateView(
