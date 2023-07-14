@@ -60,6 +60,13 @@ class NewNoteActivity : AppCompatActivity() {
         finish()
     }
 
+    private fun updateNote() = with(binding){
+        note?.copy(
+            title = edTitle.text.toString(),
+            content = edDescription.text.toString()
+        )
+    }
+
     private fun createNewNote(): NoteItem {
         return NoteItem(
             null,
