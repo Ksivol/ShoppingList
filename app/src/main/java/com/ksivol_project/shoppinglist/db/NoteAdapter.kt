@@ -46,5 +46,9 @@ class NoteAdapter : ListAdapter<NoteItem, NoteAdapter.ItemHolder>(ItemComparator
 
     }
 
+    interface Listener{
+        fun deleteItem(id: Int)
+    }
+
 
 }
