@@ -22,11 +22,20 @@ class NewNoteActivity : AppCompatActivity() {
         binding = ActivityNewNoteBinding.inflate(layoutInflater)
         setContentView(binding.root)
         actionBarSettings()
+        getNote()
     }
 
-    private fun getNote(){
+    private fun getNote() {
         note = intent.getSerializableExtra(NoteFragment.NEW_NOTE_KEY) as NoteItem
         //изменить устаревший метод
+        fillNote()
+    }
+
+    private fun fillNote() = with(binding) {
+        if (note != null) {
+            edTitle.setText(note?.title)
+            edDescription.setText(note?.content)
+        }
     }
 
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {
