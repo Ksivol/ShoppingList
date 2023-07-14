@@ -49,12 +49,19 @@ class NoteFragment : BaseFragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         initRcView()
+        observer()
     }
 
     private fun initRcView() = with(binding) {
         rcViewNote.layoutManager = LinearLayoutManager(activity)
         adapter = NoteAdapter()
         rcViewNote.adapter = adapter
+    }
+
+    private fun observer() {
+        mainViewModel.allNotes.observe(viewLifecycleOwner, {
+            adapter.submitList(it)
+        })
     }
 
     private fun onEditResult() {
