@@ -15,12 +15,18 @@ import java.util.*
 
 class NewNoteActivity : AppCompatActivity() {
     private lateinit var binding: ActivityNewNoteBinding
+    private var note: NoteItem? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityNewNoteBinding.inflate(layoutInflater)
         setContentView(binding.root)
         actionBarSettings()
+    }
+
+    private fun getNote(){
+        note = intent.getSerializableExtra(NoteFragment.NEW_NOTE_KEY) as NoteItem
+        //изменить устаревший метод
     }
 
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {
