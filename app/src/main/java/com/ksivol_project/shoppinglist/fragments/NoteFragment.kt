@@ -18,6 +18,7 @@ import com.ksivol_project.shoppinglist.activities.NewNoteActivity
 import com.ksivol_project.shoppinglist.databinding.FragmentNoteBinding
 import com.ksivol_project.shoppinglist.db.MainViewModel
 import com.ksivol_project.shoppinglist.db.NoteAdapter
+import com.ksivol_project.shoppinglist.entities.NoteItem
 
 class NoteFragment : BaseFragment() {
 
@@ -67,15 +68,14 @@ class NoteFragment : BaseFragment() {
     private fun onEditResult() {
         editLauncher = registerForActivityResult(ActivityResultContracts.StartActivityForResult()) {
             if (it.resultCode == Activity.RESULT_OK) {
-                Log.d("MyLog", "title: ${it.data?.getStringExtra(TITLE_KEY)}")
-                Log.d("MyLog", "description: ${it.data?.getStringExtra(DESC_KEY)}")
+                mainViewModel.insertNote(it.data?.getSerializableExtra(NEW_NOTE_KEY) as NoteItem)
+                // нужно изменить метод на актуальный
             }
         }
     }
 
     companion object {
-        const val TITLE_KEY = "title_key"
-        const val DESC_KEY = "desc_key"
+        const val NEW_NOTE_KEY = "title_key"
 
         @JvmStatic
         fun newInstance() = NoteFragment()
