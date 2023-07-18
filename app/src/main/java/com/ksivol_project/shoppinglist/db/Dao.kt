@@ -5,6 +5,7 @@ import androidx.room.Query
 import androidx.room.Dao
 import androidx.room.Update
 import com.ksivol_project.shoppinglist.entities.NoteItem
+import com.ksivol_project.shoppinglist.entities.ShoppingListName
 import kotlinx.coroutines.flow.Flow
 
 @Dao
@@ -15,6 +16,8 @@ interface Dao {
     suspend fun deleteNote(id: Int)
     @Insert
     suspend fun insertNote(note: NoteItem)
+    @Insert
+    suspend fun insertShopListName(name: ShoppingListName)
     @Update
     suspend fun updateNote(note: NoteItem)
 }
