@@ -7,6 +7,7 @@ import android.util.Log
 import com.ksivol_project.shoppinglist.databinding.ActivityMainBinding
 import com.ksivol_project.shoppinglist.fragments.FragmentManager
 import com.ksivol_project.shoppinglist.fragments.NoteFragment
+import com.ksivol_project.shoppinglist.fragments.ShopListNamesFragment
 
 class MainActivity : AppCompatActivity() {
     lateinit var binding: ActivityMainBinding
@@ -15,6 +16,8 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
+        FragmentManager.setFragment(ShopListNamesFragment.newInstance(), this)
+
         setBottomNavListener()
     }
 
@@ -28,7 +31,7 @@ class MainActivity : AppCompatActivity() {
                     FragmentManager.setFragment(NoteFragment.newInstance(), this)
                 }
                 R.id.shop_list -> {
-                    Log.d("MyLog","List")
+                    FragmentManager.setFragment(ShopListNamesFragment.newInstance(), this)
                 }
                 R.id.new_item -> {
                     FragmentManager.currentFrag?.onClickNew()

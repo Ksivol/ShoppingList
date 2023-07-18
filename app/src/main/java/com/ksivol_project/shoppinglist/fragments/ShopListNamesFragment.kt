@@ -1,13 +1,16 @@
 package com.ksivol_project.shoppinglist.fragments
 
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.activityViewModels
 import com.ksivol_project.shoppinglist.activities.MainApp
 import com.ksivol_project.shoppinglist.databinding.FragmentShopListNamesBinding
 import com.ksivol_project.shoppinglist.db.MainViewModel
+import com.ksivol_project.shoppinglist.dialogs.NewListDialog
 
 class ShopListNamesFragment : BaseFragment() {
 
@@ -18,7 +21,12 @@ class ShopListNamesFragment : BaseFragment() {
     }
 
     override fun onClickNew() {
+        NewListDialog.showDialog(activity as AppCompatActivity, object : NewListDialog.Listener{
+            override fun onClick(name: String) {
+                Log.d("MyLog", "Name: $name")
+            }
 
+        })
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
