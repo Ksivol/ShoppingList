@@ -10,7 +10,7 @@
     <color name="white">#FFFFFFFF</color>
 
     <color name="picker_red">#FF0000</color>
-    <color name="picker_greed">#97FF56</color>
+    <color name="picker_green">#97FF56</color>
     <color name="picker_blue">#286FD8</color>
     <color name="picker_black">#272727</color>
     <color name="picker_yellow">#EFEF00</color>
