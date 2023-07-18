@@ -1,5 +1,6 @@
 package com.ksivol_project.shoppinglist.activities
 
+import android.annotation.SuppressLint
 import android.content.Intent
 import android.graphics.Typeface
 import java.util.Calendar
@@ -17,6 +18,7 @@ import com.ksivol_project.shoppinglist.databinding.ActivityNewNoteBinding
 import com.ksivol_project.shoppinglist.entities.NoteItem
 import com.ksivol_project.shoppinglist.fragments.NoteFragment
 import com.ksivol_project.shoppinglist.utils.HtmlManager
+import com.ksivol_project.shoppinglist.utils.MyTouchListener
 import java.text.SimpleDateFormat
 import java.util.*
 
@@ -30,6 +32,12 @@ class NewNoteActivity : AppCompatActivity() {
         setContentView(binding.root)
         actionBarSettings()
         getNote()
+        init()
+    }
+
+    @SuppressLint("ClickableViewAccessibility")
+    private fun init(){
+        binding.colorPicker.setOnTouchListener(MyTouchListener())
     }
 
     private fun getNote() {
