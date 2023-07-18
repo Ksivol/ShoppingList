@@ -54,12 +54,14 @@
     </androidx.cardview.widget.CardView>
 
     <LinearLayout
+        android:id="@+id/colorPicker"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:background="#B3B3B3"
         android:elevation="10dp"
         android:orientation="horizontal"
         android:padding="3dp"
+        android:visibility="gone"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -74,7 +76,7 @@
                 android:layout_height="match_parent">
 
                 <ImageButton
-                    android:id="@+id/imageButton3"
+                    android:id="@+id/imRed"
                     android:layout_width="40dp"
                     android:layout_height="40dp"
                     android:layout_margin="2dp"
@@ -82,7 +84,7 @@
                     app:srcCompat="@color/picker_red" />
 
                 <ImageButton
-                    android:id="@+id/imageButton2"
+                    android:id="@+id/imGreen"
                     android:layout_width="40dp"
                     android:layout_height="40dp"
                     android:layout_margin="2dp"
@@ -90,7 +92,7 @@
                     app:srcCompat="@color/picker_greed" />
 
                 <ImageButton
-                    android:id="@+id/imageButton"
+                    android:id="@+id/imOrange"
                     android:layout_width="40dp"
                     android:layout_height="40dp"
                     android:layout_margin="2dp"
@@ -103,7 +105,7 @@
                 android:layout_height="match_parent">
 
                 <ImageButton
-                    android:id="@+id/imageButton4"
+                    android:id="@+id/imYellow"
                     android:layout_width="40dp"
                     android:layout_height="40dp"
                     android:layout_margin="2dp"
@@ -111,7 +113,7 @@
                     app:srcCompat="@color/picker_yellow" />
 
                 <ImageButton
-                    android:id="@+id/imageButton5"
+                    android:id="@+id/imBlue"
                     android:layout_width="40dp"
                     android:layout_height="40dp"
                     android:layout_margin="2dp"
@@ -119,7 +121,7 @@
                     app:srcCompat="@color/picker_blue" />
 
                 <ImageButton
-                    android:id="@+id/imageButton6"
+                    android:id="@+id/imBlack"
                     android:layout_width="40dp"
                     android:layout_height="40dp"
                     android:layout_margin="2dp"
