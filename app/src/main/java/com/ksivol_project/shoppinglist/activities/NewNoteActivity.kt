@@ -7,8 +7,10 @@ import java.util.Calendar
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.text.Spannable
+import android.text.method.TextKeyListener.clear
 import android.text.style.ForegroundColorSpan
 import android.text.style.StyleSpan
+import android.view.ActionMode
 import android.view.Menu
 import android.view.MenuItem
 import android.view.View
@@ -36,6 +38,7 @@ class NewNoteActivity : AppCompatActivity() {
         getNote()
         init()
         onClickColorPicker()
+        actionMenuCallBack()
     }
 
     private fun onClickColorPicker() = with(binding){
@@ -198,4 +201,30 @@ class NewNoteActivity : AppCompatActivity() {
         })
         binding.colorPicker.startAnimation(openAnim)
     }
+
+    // Убрано всплывающее меню
+    private fun actionMenuCallBack(){
+        val actionCallBack = object : ActionMode.Callback{
+            override fun onCreateActionMode(mode: ActionMode?, menu: Menu?): Boolean {
+                menu?.clear()
+                return true
+            }
+
+            override fun onPrepareActionMode(mode: ActionMode?, menu: Menu?): Boolean {
+                menu?.clear()
+                return true
+            }
+
+            override fun onActionItemClicked(mode: ActionMode?, menu: MenuItem?): Boolean {
+                return true
+            }
+
+            override fun onDestroyActionMode(mode: ActionMode?) {
+
+            }
+
+        }
+        binding.edDescription.customSelectionActionModeCallback = actionCallBack
+    }
+
 }
