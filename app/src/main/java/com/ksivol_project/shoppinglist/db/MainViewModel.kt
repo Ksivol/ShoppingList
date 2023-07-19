@@ -2,14 +2,20 @@ package com.ksivol_project.shoppinglist.db
 
 import androidx.lifecycle.*
 import com.ksivol_project.shoppinglist.entities.NoteItem
+import com.ksivol_project.shoppinglist.entities.ShoppingListName
 import kotlinx.coroutines.launch
 
 class MainViewModel(dataBase: MainDataBase) : ViewModel() {
     val dao = dataBase.getDao()
 
     val allNotes: LiveData<List<NoteItem>> = dao.getAllNotes().asLiveData()
+    val allShopListNames: LiveData<List<ShoppingListName>> = dao.getAllShopListNames().asLiveData()
     fun insertNote(note: NoteItem) = viewModelScope.launch {
         dao.insertNote(note)
+    }
+
+    fun insertShopListName(listName: ShoppingListName) = viewModelScope.launch {
+        dao.insertShopListName(listName)
     }
 
     fun updateNote(note: NoteItem) = viewModelScope.launch {

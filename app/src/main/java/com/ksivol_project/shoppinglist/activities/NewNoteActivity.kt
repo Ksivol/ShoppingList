@@ -23,6 +23,7 @@ import com.ksivol_project.shoppinglist.entities.NoteItem
 import com.ksivol_project.shoppinglist.fragments.NoteFragment
 import com.ksivol_project.shoppinglist.utils.HtmlManager
 import com.ksivol_project.shoppinglist.utils.MyTouchListener
+import com.ksivol_project.shoppinglist.utils.TimeManager
 import java.text.SimpleDateFormat
 import java.util.*
 
@@ -162,14 +163,9 @@ class NewNoteActivity : AppCompatActivity() {
             null,
             binding.edTitle.text.toString(),
             HtmlManager.toHtml(binding.edDescription.text),
-            getCurrentTime(),
+            TimeManager.getCurrentTime(),
             ""
         )
-    }
-
-    private fun getCurrentTime(): String {
-        val formatter = SimpleDateFormat("hh:mm:ss - yyyy/MM/dd", Locale.getDefault())
-        return formatter.format(Calendar.getInstance().time)
     }
 
     private fun actionBarSettings() {

@@ -11,6 +11,8 @@ import com.ksivol_project.shoppinglist.activities.MainApp
 import com.ksivol_project.shoppinglist.databinding.FragmentShopListNamesBinding
 import com.ksivol_project.shoppinglist.db.MainViewModel
 import com.ksivol_project.shoppinglist.dialogs.NewListDialog
+import com.ksivol_project.shoppinglist.entities.ShoppingListName
+import com.ksivol_project.shoppinglist.utils.TimeManager
 
 class ShopListNamesFragment : BaseFragment() {
 
@@ -23,7 +25,15 @@ class ShopListNamesFragment : BaseFragment() {
     override fun onClickNew() {
         NewListDialog.showDialog(activity as AppCompatActivity, object : NewListDialog.Listener{
             override fun onClick(name: String) {
-                Log.d("MyLog", "Name: $name")
+                val shopListName = ShoppingListName(
+                    null,
+                    name,
+                    TimeManager.getCurrentTime(),
+                    0,
+                    0,
+                    ""
+                )
+                mainViewModel.insertShopListName(shopListName)
             }
 
         })
@@ -52,7 +62,7 @@ class ShopListNamesFragment : BaseFragment() {
     }
 
     private fun observer() {
-        mainViewModel.allNotes.observe(viewLifecycleOwner, {
+        mainViewModel.allShopListNames.observe(viewLifecycleOwner, {
 
         })
     }
