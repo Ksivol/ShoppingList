@@ -7,9 +7,11 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.activityViewModels
+import androidx.recyclerview.widget.LinearLayoutManager
 import com.ksivol_project.shoppinglist.activities.MainApp
 import com.ksivol_project.shoppinglist.databinding.FragmentShopListNamesBinding
 import com.ksivol_project.shoppinglist.db.MainViewModel
+import com.ksivol_project.shoppinglist.db.ShopListNameAdapter
 import com.ksivol_project.shoppinglist.dialogs.NewListDialog
 import com.ksivol_project.shoppinglist.entities.ShoppingListName
 import com.ksivol_project.shoppinglist.utils.TimeManager
@@ -17,6 +19,7 @@ import com.ksivol_project.shoppinglist.utils.TimeManager
 class ShopListNamesFragment : BaseFragment() {
 
     private lateinit var binding: FragmentShopListNamesBinding
+    private lateinit var adapter: ShopListNameAdapter
 
     private val mainViewModel: MainViewModel by activityViewModels {
         MainViewModel.MainViewModelFactory((context?.applicationContext as MainApp).database)
@@ -58,13 +61,15 @@ class ShopListNamesFragment : BaseFragment() {
     }
 
     private fun initRcView() = with(binding) {
-
+        rcView.layoutManager = LinearLayoutManager(activity)
+        adapter = ShopListNameAdapter()
+        rcView.adapter = adapter
     }
 
     private fun observer() {
-        mainViewModel.allShopListNames.observe(viewLifecycleOwner, {
-
-        })
+        mainViewModel.allShopListNames.observe(viewLifecycleOwner) {
+            adapter.submitList(it)
+        }
     }
 
 
