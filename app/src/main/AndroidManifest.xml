@@ -14,11 +14,17 @@
         android:theme="@style/Theme.ShoppingList"
         tools:targetApi="31">
         <activity
+            android:name=".ShopListActivity"
+            android:exported="false">
+            <meta-data
+                android:name="android.app.lib_name"
+                android:value="" />
+        </activity>
+        <activity
             android:name=".activities.NewNoteActivity"
             android:exported="true"
-            android:windowSoftInputMode="stateAlwaysVisible|adjustResize"
             android:theme="@style/Theme.NewNote"
-            >
+            android:windowSoftInputMode="stateAlwaysVisible|adjustResize">
             <meta-data
                 android:name="android.app.lib_name"
                 android:value="" />
