@@ -25,7 +25,7 @@ class ShopListNameAdapter(private val listener: Listener) : ListAdapter<ShopList
         fun setData(shopListNameItem: ShopListNameItem, listener: Listener) = with(binding) {
             tvListName.text = shopListNameItem.name
             tvTime.text = shopListNameItem.time
-            itemView.setOnClickListener {
+            listNameItem.setOnClickListener {
                 listener.onClickItem(shopListNameItem)
             }
             imDelete.setOnClickListener {
@@ -57,8 +57,8 @@ class ShopListNameAdapter(private val listener: Listener) : ListAdapter<ShopList
 
     interface Listener{
         fun deleteItem(id: Int)
-        fun editItem(shopListName: ShopListNameItem)
-        fun onClickItem(shopListName: ShopListNameItem)
+        fun editItem(shopListNameItem: ShopListNameItem)
+        fun onClickItem(shopListNameItem: ShopListNameItem)
     }
 
 

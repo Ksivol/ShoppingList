@@ -18,7 +18,7 @@ import com.ksivol_project.shoppinglist.dialogs.NewListDialog
 import com.ksivol_project.shoppinglist.entities.ShopListNameItem
 import com.ksivol_project.shoppinglist.utils.TimeManager
 
-class ShopListNamesFragment : BaseFragment(), ShopListNameAdapter.Listener {
+class ShopListNamesFragment : BaseFragment(){
 
     private lateinit var binding: FragmentShopListNamesBinding
     private lateinit var adapter: ShopListNameAdapter
@@ -64,7 +64,33 @@ class ShopListNamesFragment : BaseFragment(), ShopListNameAdapter.Listener {
 
     private fun initRcView() = with(binding) {
         rcView.layoutManager = LinearLayoutManager(activity)
-        adapter = ShopListNameAdapter(this@ShopListNamesFragment)
+        adapter = ShopListNameAdapter(object:ShopListNameAdapter.Listener{
+            override fun deleteItem(id: Int) {
+                DeleteDialog.showDialog(context as AppCompatActivity, object : DeleteDialog.Listener {
+                    override fun onClick() {
+                        mainViewModel.deleteShopListName(id)
+                    }
+
+                })
+            }
+
+            override fun editItem(shopListNameItem: ShopListNameItem) {
+                NewListDialog.showDialog(activity as AppCompatActivity, object : NewListDialog.Listener {
+                    override fun onClick(name: String) {
+                        mainViewModel.updateListName(shopListNameItem.copy(name = name))
+                    }
+
+                }, shopListNameItem.name)
+            }
+
+            override fun onClickItem(shopListNameItem: ShopListNameItem) {
+                val i = Intent(activity, ShopListActivity::class.java).apply {
+                    putExtra(ShopListActivity.SHOP_LIST_NAME, shopListNameItem)
+                }
+                startActivity(i)
+            }
+
+        })
         rcView.adapter = adapter
     }
 
@@ -80,28 +106,4 @@ class ShopListNamesFragment : BaseFragment(), ShopListNameAdapter.Listener {
         fun newInstance() = ShopListNamesFragment()
     }
 
-    override fun deleteItem(id: Int) {
-        DeleteDialog.showDialog(context as AppCompatActivity, object : DeleteDialog.Listener {
-            override fun onClick() {
-                mainViewModel.deleteShopListName(id)
-            }
-
-        })
-    }
-
-    override fun editItem(shopListName: ShopListNameItem) {
-        NewListDialog.showDialog(activity as AppCompatActivity, object : NewListDialog.Listener {
-            override fun onClick(name: String) {
-                mainViewModel.updateListName(shopListName.copy(name = name))
-            }
-
-        }, shopListName.name)
-    }
-
-    override fun onClickItem(shopListNameItem: ShopListNameItem) {
-        val i = Intent(activity, ShopListActivity::class.java).apply {
-            putExtra(ShopListActivity.SHOP_LIST_NAME, shopListNameItem)
-        }
-        startActivity(i)
-    }
 }

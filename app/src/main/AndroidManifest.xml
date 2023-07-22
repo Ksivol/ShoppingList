@@ -14,7 +14,7 @@
         android:theme="@style/Theme.ShoppingList"
         tools:targetApi="31">
         <activity
-            android:name=".ShopListActivity"
+            android:name=".activities.ShopListActivity"
             android:exported="false">
             <meta-data
                 android:name="android.app.lib_name"
