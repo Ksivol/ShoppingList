@@ -5,7 +5,7 @@ import androidx.room.Entity
 import androidx.room.PrimaryKey
 
 @Entity (tableName = "shopping_list_names")
-data class ShoppingListName(
+data class ShopListNameItem(
     @PrimaryKey (autoGenerate = true)
     val id: Int?,
 
