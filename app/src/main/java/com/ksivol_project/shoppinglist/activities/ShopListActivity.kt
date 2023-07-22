@@ -4,6 +4,7 @@ import android.os.Build
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.Menu
+import android.view.MenuItem
 import androidx.activity.viewModels
 import androidx.annotation.RequiresApi
 import com.ksivol_project.shoppinglist.R
@@ -14,6 +15,7 @@ import com.ksivol_project.shoppinglist.entities.ShopListNameItem
 class ShopListActivity : AppCompatActivity() {
     private lateinit var binding: ActivityShopListBinding
     private var shopListNameItem: ShopListNameItem? = null
+    private lateinit var saveItem: MenuItem
 
     private val mainViewModel: MainViewModel by viewModels {
         MainViewModel.MainViewModelFactory((applicationContext as MainApp).database)
@@ -29,7 +31,27 @@ class ShopListActivity : AppCompatActivity() {
 
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {
         menuInflater.inflate(R.menu.shop_list_menu, menu)
+        saveItem = menu?.findItem(R.id.save_item)!!
+        val newItem = menu.findItem(R.id.new_item)
+        newItem.setOnActionExpandListener(expandActionView())
+        saveItem.isVisible = false
         return true
+    }
+
+    private fun expandActionView(): MenuItem.OnActionExpandListener{
+        return object : MenuItem.OnActionExpandListener{
+            override fun onMenuItemActionExpand(p0: MenuItem): Boolean {
+                saveItem.isVisible = true
+                return true
+            }
+
+            override fun onMenuItemActionCollapse(p0: MenuItem): Boolean {
+                saveItem.isVisible = false
+                invalidateOptionsMenu()
+                return true
+            }
+
+        }
     }
 
     @RequiresApi(Build.VERSION_CODES.TIRAMISU)
