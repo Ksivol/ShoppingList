@@ -42,6 +42,13 @@ class ShopListActivity : AppCompatActivity() {
         return true
     }
 
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        if (item.itemId == R.id.save_item){
+            addNewShopItem()
+        }
+        return super.onOptionsItemSelected(item)
+    }
+
     private fun addNewShopItem(){
         if(edItem?.text.toString().isEmpty())return
         val item = ShopListItem(
