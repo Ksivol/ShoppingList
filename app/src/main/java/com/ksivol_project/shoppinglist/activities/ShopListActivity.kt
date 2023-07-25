@@ -59,6 +59,7 @@ class ShopListActivity : AppCompatActivity() {
             shopListNameItem?.id!!,
             0
         )
+        edItem?.setText("")
         mainViewModel.insertShopItem(item)
     }
 
